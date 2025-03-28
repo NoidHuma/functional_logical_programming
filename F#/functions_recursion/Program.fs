@@ -34,7 +34,16 @@ let cylinderVolumeCurr r height =
 // task 4
 let rec sumDigitsUp num =
     if num = 0 then 0
-    else (num % 10) + sumDigitsUp (num / 10)
+    else (num % 10) + sumDigitsUp(num / 10)
+
+
+// task 5
+let rec sumDigitsTailHelper num acc =
+    if num = 0 then acc
+    else sumDigitsTailHelper (num / 10) (acc + (num % 10))
+
+let rec sumDigitsTail num =
+    sumDigitsTailHelper num 0
 
 
 [<EntryPoint>]
@@ -42,6 +51,7 @@ let main argv =
     Console.Write("Введите число: ")
     let number = Console.ReadLine() |> int
     Console.WriteLine($"Сумма цифр (рекурсия вверх): {sumDigitsUp number}")
+    Console.WriteLine($"Сумма цифр (хвостовая рекурсия): {sumDigitsTail number}")
 
 
     0
