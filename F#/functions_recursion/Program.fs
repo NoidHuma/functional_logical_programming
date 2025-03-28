@@ -31,24 +31,17 @@ let cylinderVolumeCurr r height =
     (circleArea r) * height
 
 
+// task 4
+let rec sumDigitsUp num =
+    if num = 0 then 0
+    else (num % 10) + sumDigitsUp (num / 10)
+
+
 [<EntryPoint>]
 let main argv = 
-    Console.WriteLine("Task 2")
-    let res = solve 4 -24 36
-    match res with
-         None -> Console.WriteLine("Нет решений")
-         | Linear(x) -> Console.WriteLine($"Линейное уравнение, корень: {x}.")
-         | Quadratic(x1, x2) when x1 = x2 -> Console.WriteLine($"Квадратичное уравнение, 1 корень: {x1}.")
-         | Quadratic(x1, x2) -> Console.WriteLine($"Квадратичное уравнение, 2 корня: {x1}, {x2}.")
-    
-    Console.WriteLine("Task 3")
-    Console.Write("Радиус = ")
-    let radius = Console.ReadLine() |> float
-    Console.Write("Высота = ")
-    let height = Console.ReadLine() |> float
-    Console.WriteLine($"Площадь круга: {circleArea radius}")
-    Console.WriteLine($"Объем цилиндра (суперпозиция): {cylinderVolumeSuperPos radius height}")
-    Console.WriteLine($"Объем цилиндра (каррирование): {cylinderVolumeCurr radius height}")
+    Console.Write("Введите число: ")
+    let number = Console.ReadLine() |> int
+    Console.WriteLine($"Сумма цифр (рекурсия вверх): {sumDigitsUp number}")
 
 
     0
